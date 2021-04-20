@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { Page1Component } from './page1/page1.component';
 import { Page2Component } from './page2/page2.component';
 import { CookieBannerComponent } from './cookie-banner/cookie-banner.component';
+import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CookieBannerComponent } from './cookie-banner/cookie-banner.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxGoogleAnalyticsModule.forRoot('G-NYLE32TNYR')
   ],
   providers: [],
   bootstrap: [AppComponent]
