@@ -18,8 +18,7 @@ export class Page1Component implements OnInit {
   ngOnInit(): void {
   }
 
-  form1() {
-
+  form3() {
 
     gtag('event', 'click', {
       'event_name': 'buttonclick',
@@ -27,10 +26,13 @@ export class Page1Component implements OnInit {
       'event_label': 'contact form'
     });
 
+  }
+
+  form1() {
     gtag('event', 'view_item_list', {
       'items': [
         {
-          'item_name': 'Triblend Android T-Shirt',       // Name or ID is required.
+          'item_name': 'DEBUG TEST 1',
           'item_id': '12345',
           'price': '15.25',
           'item_brand': 'Google',
@@ -60,12 +62,15 @@ export class Page1Component implements OnInit {
           'quantity': '1'
         }]
     });
+  }
+
+  form2() {
 
     gtag('event', 'view_item_list', {
       'ecommerce': {
         'items': [
           {
-            'item_name': 'Triblend Android T-Shirt',       // Name or ID is required.
+            'item_name': 'DEBUG TEST 2 ECCOMERCE',
             'item_id': '12345',
             'price': '15.25',
             'item_brand': 'Google',
