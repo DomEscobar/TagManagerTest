@@ -36,12 +36,11 @@ export class GtmService {
     }
   }
 
-  public pushDatalayer(gtmTagData: GtmTagData): void {
-    console.log(JSON.stringify(gtmTagData));
-    this.getDataLayer.push(gtmTagData);
+  public pushDatalayer(event: GaEvent, data: any): void {
+    this.getDataLayer.push('event', event, data);
   }
 
-  private get getDataLayer(): GtmTagData[] {
+  private get getDataLayer(): any[] {
     const window = this.browserGlobals.windowRef();
     window.dataLayer = window.dataLayer || [];
     return window.dataLayer;
@@ -68,10 +67,8 @@ export interface GtmTagData {
 }
 
 
-export class GtmTagEcommerceData implements GtmTagData {
-
+export class GtmTagEcommerceData {
   constructor(
-    public event: GaEvent,
     public items: GaEcommerceItem[]
   ) {
   }

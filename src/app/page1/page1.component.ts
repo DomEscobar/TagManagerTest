@@ -19,7 +19,14 @@ export class Page1Component implements OnInit {
   }
 
   form3() {
-    this.$gaService.event(GaActionEnum.SELECT_CONTENT, "abc", "schnee");
+    this._gtmService.pushDatalayer(
+      GaEvent.LevelUp,
+      new GtmTagEcommerceData(
+        [
+          new GaEcommerceItem("test", "test", "test", "test", "test", "1")
+        ]
+      )
+    );
   }
 
   form1() {
