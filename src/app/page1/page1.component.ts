@@ -19,14 +19,11 @@ export class Page1Component implements OnInit {
   }
 
   form3() {
-    this._gtmService.pushDatalayer(
-      new GtmTagEcommerceData(
-        GaEvent.ViewItemList,
-        [
-          new GaEcommerceItem("test", "test", "test", "test", "test", "1")
-        ]
-      )
-    );
+    gtag('event', 'my_custom_event', {
+      event_category: 'some category',
+      event_label: 'some label',
+      value: 15.00
+    });
   }
 
   form1() {
