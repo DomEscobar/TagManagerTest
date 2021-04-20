@@ -37,7 +37,7 @@ export class GtmService {
   }
 
   public pushDatalayer(event: GaEvent, data: any): void {
-    this.getDataLayer.push('event', event, data);
+    this.getDataLayer.push(...['event', event, data]);
   }
 
   private get getDataLayer(): any[] {
