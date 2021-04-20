@@ -45,11 +45,18 @@ export class GtmService {
     }
   }
 
-  public event(action: GaEvent | string, category: GtmEventCategory | string, eventName: string, data?: any): void {
+  public event(action: GaEvent | string, category: GtmEventCategory | string, eventName: string, data?: Map<string, any>): void {
     try {
       const opt = new Map<string, any>();
       opt.set('event_category', category);
       opt.set('event_name', eventName);
+      opt.set('event_name', eventName);
+
+      if (data) {
+        data.forEach((value, key) => {
+          opt.set(key, value);
+        });
+      }
 
       const params = this.toKeyValue(opt);
       if (params) {
@@ -81,15 +88,6 @@ export interface GtmTagData {
   // event_category: GtmEvent;
   event: GaEvent;
 }
-
-
-export class GtmTagEcommerceData {
-  constructor(
-    public items: GaEcommerceItem[]
-  ) {
-  }
-}
-
 export enum GtmEventCategory {
   VIEW = "V",
   NAVIGATION = "N",
