@@ -17,8 +17,7 @@ import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    NgxGoogleAnalyticsModule.forRoot('G-NYLE32TNYR')
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

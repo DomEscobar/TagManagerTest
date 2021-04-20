@@ -19,17 +19,20 @@ export class Page1Component implements OnInit {
   }
 
   form3() {
-
-    gtag('event', 'click', {
-      'event_name': 'buttonclick',
-      'event_category': 'button',
-      'event_label': 'contact form'
-    });
-
+    this._gtmService.pushDatalayer(
+      new GtmTagEcommerceData(
+        GaEvent.ViewItemList,
+        [
+          new GaEcommerceItem("test", "test", "test", "test", "test", "1")
+        ]
+      )
+    );
   }
 
   form1() {
     gtag('event', 'view_item_list', {
+      'event_name': 'buttonclick',
+      'event_category': 'button',
       'items': [
         {
           'item_name': 'DEBUG TEST 1',
@@ -67,6 +70,8 @@ export class Page1Component implements OnInit {
   form2() {
 
     gtag('event', 'view_item_list', {
+      'event_name': 'buttonclick',
+      'event_category': 'button',
       'ecommerce': {
         'items': [
           {
