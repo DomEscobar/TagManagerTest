@@ -5,6 +5,6 @@ export class GaEcommerceItem {
         public item_category: string,
         public item_list_name: string,
         public item_list_id: string,
-        public index: string
+        public index: number
     ) { }
 }

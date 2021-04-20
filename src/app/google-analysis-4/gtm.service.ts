@@ -3,6 +3,7 @@ import { NavigationEnd, Router } from "@angular/router";
 import { environment } from "src/environments/environment";
 import { GaEcommerceItem } from "./ga-ecommerce-item";
 import { GaEvent } from "./ga-events.enum";
+declare const gtag: any;
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,6 @@ export class GtmService {
       gaScript.innerHTML = `
         window.dataLayer = window.dataLayer || [];
         function gtag() { 
-          console.log(arguments);
           dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', '${environment.gaTrackingId}');
@@ -36,24 +36,40 @@ export class GtmService {
     }
   }
 
-  public pushDatalayer(event: GaEvent, data: any): void {
-    this.getDataLayer.push(...['event', event, data]);
+
+  public gtag(...args: any[]): void {
+    try {
+      gtag(...args.filter(x => x !== undefined));
+    } catch (err) {
+      console.error(err);
+    }
   }
 
-  private get getDataLayer(): any[] {
-    const window = this.browserGlobals.windowRef();
-    window.dataLayer = window.dataLayer || [];
-    return window.dataLayer;
-  };
+  public event(action: GaEvent | string, category: GtmEventCategory | string, eventName: string, data?: any): void {
+    try {
+      const opt = new Map<string, any>();
+      opt.set('event_category', category);
+      opt.set('event_name', eventName);
 
-  private browserGlobals = {
-    windowRef(): any {
-      return window;
-    },
-    documentRef(): any {
-      return document;
-    },
-  };
+      const params = this.toKeyValue(opt);
+      if (params) {
+        this.gtag('event', action as string, params);
+      } else {
+        this.gtag('event', action as string);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  private toKeyValue(map: Map<string, any>): { [param: string]: any } | void {
+    return (map.size > 0)
+      ? Array.from(map).reduce(
+        (obj, [key, value]) => Object.defineProperty(obj, key, { value, enumerable: true }),
+        {}
+      )
+      : undefined;
+  }
 }
 
 
@@ -74,7 +90,8 @@ export class GtmTagEcommerceData {
   }
 }
 
-export enum GtmEvent {
+export enum GtmEventCategory {
+  VIEW = "V",
   NAVIGATION = "N",
   HOVER = "H",
   SWIPE = "S",

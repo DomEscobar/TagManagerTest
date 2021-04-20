@@ -29,6 +29,7 @@ export enum GaEvent {
     ViewItem = "view_item",
     ViewItemList = "view_item_list",
     ViewSearchResults = "view_search_results",
+    selectItem = "select_item",
 
     // Jobs, Education, Local Deals, Real Estate (currently identical to Retail/Ecommerce)
     // https://support.google.com/firebase/answer/6375140?hl=en&ref_topic=6317484

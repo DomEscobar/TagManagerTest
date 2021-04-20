@@ -9,7 +9,7 @@ const routes: Routes = [
     component: Page1Component
   },
   {
-    path: "page2",
+    path: "checkout",
     component: Page2Component
   }
 ];
