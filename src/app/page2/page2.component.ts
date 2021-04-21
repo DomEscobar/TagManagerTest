@@ -9,12 +9,15 @@ import { GtmEventCategory, GtmService } from "../google-analysis-4/gtm.service";
 })
 export class Page2Component implements OnInit {
 
+  public checkoutDone: boolean;
+
   constructor(private readonly _gtmService: GtmService) { }
 
   ngOnInit(): void {
   }
 
   public book(): void {
-    this._gtmService.event(GaEvent.BeginCheckout, GtmEventCategory.CLICK, "Fernreise")
+    this._gtmService.event(GaEvent.BeginCheckout, GtmEventCategory.CLICK, "Fernreise");
+    this.checkoutDone = true;
   }
 }
