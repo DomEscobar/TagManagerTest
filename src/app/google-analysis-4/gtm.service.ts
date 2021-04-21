@@ -61,6 +61,7 @@ export class GtmService {
       opt.set('event_category', category);
       opt.set('event_name', eventName);
       opt.set('country', this.country);
+      opt.set('event', action);
 
       if (data) {
         data.forEach((value, key) => {
@@ -69,11 +70,8 @@ export class GtmService {
       }
 
       const params = this.toKeyValue(opt);
-      if (params) {
-        this.gtag('event', action as string, params);
-      } else {
-        this.gtag('event', action as string);
-      }
+      this.gtag(params);
+
     } catch (error) {
       console.error(error);
     }
