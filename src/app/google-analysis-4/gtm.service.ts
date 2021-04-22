@@ -11,6 +11,11 @@ export class GtmService {
   public country = Country.Germany;
 
   constructor() {
+
+    if (localStorage.getItem('dec')) {
+      return;
+    }
+
     this.addScripts();
   }
 
