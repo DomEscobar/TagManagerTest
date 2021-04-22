@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  gaTrackingId: 'G-NYLE32TNYR',
+  gaTrackingId: 'G-XW2Y5YHXZB',
   uaTrackingId: 'UA-195067290-1'
 };
 
