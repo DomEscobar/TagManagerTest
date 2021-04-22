@@ -40,7 +40,7 @@ export class Page1Component implements AfterViewInit {
       GtmEventCategory.CLICK,
       "Fernreise",
       [new GaEcommerceItem("Rundreise Istanbul", "B2BA01", "Round Trip", "Product List", "MVP2", 1)]
-    );
+      , true);
 
     this._router.navigate(['/checkout']);
   }
