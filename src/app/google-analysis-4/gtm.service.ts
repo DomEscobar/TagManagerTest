@@ -23,7 +23,7 @@ export class GtmService {
     if (environment.gaTrackingId) {
       const gTagManagerScript = document.createElement('script');
       gTagManagerScript.async = true;
-      gTagManagerScript.src = `https://www.googletagmanager.com/gtag/js?id=${environment.gaTrackingId}`;
+      gTagManagerScript.src = `https://www.googletagmanager.com/gtag/js?id=${environment.uaTrackingId}`;
       document.head.appendChild(gTagManagerScript);
       const gaScript = document.createElement('script');
       gaScript.innerHTML = `
@@ -32,6 +32,7 @@ export class GtmService {
           console.log(arguments);
           dataLayer.push(arguments); }
         gtag('js', new Date());
+        gtag('config', '${environment.uaTrackingId}');
         gtag('config', '${environment.gaTrackingId}');
 
       `;
