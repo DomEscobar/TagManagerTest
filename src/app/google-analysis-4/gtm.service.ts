@@ -3,6 +3,8 @@ import { environment } from "src/environments/environment";
 import { GaEcommerceItem } from "./ga-ecommerce-item";
 import { GaEvent } from "./ga-events.enum";
 declare const gtag: any;
+declare const dataLayer: any;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -49,7 +51,20 @@ export class GtmService {
     }
   }
 
-  public ecommerceItemsEvent(event: GaEvent, category: GtmEventCategory | string, eventName: string, items: GaEcommerceItem[]): void {
+  public ecommerceItemsEvent(event: GaEvent, category: GtmEventCategory | string, eventName: string, items: GaEcommerceItem[], asDataLayer: boolean = false): void {
+
+    if (asDataLayer) {
+      dataLayer.push({ ecommerce: null });
+      const obj = {
+        "event": event,
+        "ecommerce": {
+          "items": items
+        }
+      };
+      dataLayer.push(obj);
+      console.log(obj);
+      return;
+    }
 
     const itemsObj = {
       items: items
