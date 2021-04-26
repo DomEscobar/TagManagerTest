@@ -1,3 +1,6 @@
+import { analyzeAndValidateNgModules } from "@angular/compiler";
+declare const dataLayer: any;
+
 export function addGTMScripts(gtmId: string | undefined): Promise<void> {
     return new Promise((resolve, reject) => {
         if (gtmId == undefined) {
