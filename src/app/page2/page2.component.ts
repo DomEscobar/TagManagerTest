@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GaEvent } from "../google-analysis-4/ga-events.enum";
-import { GtmEventCategory, GtmService } from "../google-analysis-4/gtm.service";
+import { GtmService } from "../google-analysis-4/gtm.service";
 
 @Component({
   selector: 'app-page2',
@@ -17,7 +17,10 @@ export class Page2Component implements OnInit {
   }
 
   public book(): void {
-    this._gtmService.event(GaEvent.BeginCheckout, GtmEventCategory.CLICK, "Fernreise");
+
+    this._gtmService.customEvent(GaEvent.CustomEvent, "Error", "Error Checkout");
+
+    this._gtmService.ecommerceItemsEvent(GaEvent.BeginCheckout, []);
     this.checkoutDone = true;
   }
 }
