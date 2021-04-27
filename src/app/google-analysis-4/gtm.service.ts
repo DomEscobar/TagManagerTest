@@ -15,8 +15,13 @@ export class GtmService {
 
   public ecommerceItemsEvent(event: GaEvent, items: GaEcommerceItem[]): void {
     // pushOnDataLayer({ ecommerce: null });
-    const layer = new GtmEcommerceLayer(event, new GtmEcommerceData(items));
-    pushOnDataLayer('event', event, new GtmEcommerceData(items));
+    const layer = {
+      eccomerce: {
+        items: items
+      }
+    };
+
+    pushOnDataLayer('event', event, layer);
   }
 
   public customEvent(action: GaEvent | string, category: GtmCustomEventCategory | string, eventName: string, eventContent?: any): void {
