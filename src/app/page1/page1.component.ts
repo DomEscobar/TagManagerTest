@@ -21,25 +21,6 @@ export class Page1Component implements AfterViewInit {
       GaEvent.ViewItemList,
       [new GaEcommerceItem("Rundreise Istanbul", "B2BA01", "Round Trip", "Product List", "MVP2", 1)]
     );
-
-    gtag('event', 'view_item', {
-      currency: 'USD',
-      items: [{
-        item_id: 'SKU_12345',
-        item_name: 'jeggings',
-        coupon: 'SUMMER_FUN',
-        discount: 2.22,
-        affiliation: 'Google Store',
-        item_brand: 'Gucci',
-        item_category: 'pants',
-        item_variant: 'black',
-        price: 9.99,
-        currency: 'USD',
-        quantity: 1
-      }],
-      value: 9.99
-    });
-
   }
 
   selectItem() {

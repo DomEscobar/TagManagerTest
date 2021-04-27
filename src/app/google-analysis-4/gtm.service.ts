@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GaEcommerceItem } from "./ga-ecommerce-item";
 import { GaEvent } from "./ga-events.enum";
-declare const dataLayer: any;
+import { addGTMScripts, pushOnDataLayer } from "./gtm-funtions";
 @Injectable({
   providedIn: 'root'
 })
@@ -10,30 +10,18 @@ export class GtmService {
   public country = Country.Germany;
 
   constructor() {
-
-    if (localStorage.getItem('dec')) {
-      return;
-    }
-
-    dataLayer.push({
-      "country": this.country
-    });
+    addGTMScripts("GTM-KJFQ7JJ");
   }
 
   public ecommerceItemsEvent(event: GaEvent, items: GaEcommerceItem[]): void {
-    dataLayer.push({ ecommerce: null });
-    const obj = {
-      event: event,
-      ecommerce: {
-        items: items
-      }
-    };
-    dataLayer.push(obj);
+    pushOnDataLayer({ ecommerce: null });
+    const layer = new GtmEcommerceLayer(event, new GtmEcommerceData(items));
+    pushOnDataLayer(layer);
   }
 
   public customEvent(action: GaEvent | string, category: GtmCustomEventCategory | string, eventName: string, eventContent?: any): void {
     try {
-      dataLayer.push({
+      pushOnDataLayer({
         'event': action,
         'event_name': eventName,
         'event_category': category,
@@ -58,4 +46,26 @@ export enum Country {
   Germany = "Germany",
   Austria = "Austria",
   Switzerland = "Switzerland"
+}
+
+export class GtmEcommerceLayer {
+  constructor(
+    public event: GaEvent,
+    public ecommerce: GtmEcommerceData
+  ) {
+  }
+}
+
+export class GtmEcommerceListLayer {
+  constructor(
+    public event: GaEvent,
+    public ecommerce: GtmEcommerceData
+  ) {
+  }
+}
+class GtmEcommerceData {
+  constructor(
+    public items: GaEcommerceItem[]
+  ) {
+  }
 }

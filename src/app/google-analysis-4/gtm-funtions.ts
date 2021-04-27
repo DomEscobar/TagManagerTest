@@ -1,6 +1,3 @@
-import { analyzeAndValidateNgModules } from "@angular/compiler";
-declare const dataLayer: any;
-
 export function addGTMScripts(gtmId: string | undefined): Promise<void> {
     return new Promise((resolve, reject) => {
         if (gtmId == undefined) {
@@ -10,7 +7,7 @@ export function addGTMScripts(gtmId: string | undefined): Promise<void> {
         const doc = browserGlobals.documentRef();
         pushOnDataLayer({
             'gtm.start': new Date().getTime(),
-            event: 'gtm.js',
+            'event': 'gtm.js'
         });
 
         const gtmScript: HTMLScriptElement = doc.createElement('script');
@@ -29,41 +26,21 @@ export function addGTMScripts(gtmId: string | undefined): Promise<void> {
     });
 }
 
-
-export function addGAScript(gaTrackingId: string | undefined): void {
-
-    if (gaTrackingId == undefined) {
-        return;
-    }
-
-    const gTagManagerScript = document.createElement('script');
-    gTagManagerScript.async = true;
-    gTagManagerScript.src = `https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`;
-    document.head.appendChild(gTagManagerScript);
-    const gaScript = document.createElement('script');
-    gaScript.innerHTML = `
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { 
-          console.log(arguments);
-          dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', '${gaTrackingId}');
-      `;
-    document.head.appendChild(gaScript);
-}
-
-export function getDataLayer(): any[] {
+function getDataLayer(): any[] {
     const window = browserGlobals.windowRef();
-    window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || [{
+        'country': 'Germany'
+    }];
     return window.dataLayer;
 }
 
 export function pushOnDataLayer(obj: object): void {
     const dataLayer = getDataLayer();
+    console.log(obj);
     dataLayer.push(obj);
 }
 
-export const browserGlobals = {
+const browserGlobals = {
     windowRef(): any {
         return window;
     },
