@@ -5,9 +5,8 @@ export function addGTMScripts(gtmId: string | undefined): Promise<void> {
         }
 
         const doc = browserGlobals.documentRef();
-        pushOnDataLayer({
-            'gtm.start': new Date().getTime(),
-            'event': 'gtm.js'
+        pushOnDataLayer('event', 'gtm.js', {
+            'gtm.start': new Date().getTime()
         });
 
         const gtmScript: HTMLScriptElement = doc.createElement('script');
@@ -34,10 +33,10 @@ function getDataLayer(): any[] {
     return window.dataLayer;
 }
 
-export function pushOnDataLayer(obj: object): void {
+export function pushOnDataLayer(type: string, name: string, data: any): void {
     const dataLayer = getDataLayer();
-    console.log(obj);
-    dataLayer.push(obj);
+    console.log(arguments);
+    dataLayer.push(arguments);
 }
 
 const browserGlobals = {

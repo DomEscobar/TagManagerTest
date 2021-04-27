@@ -14,19 +14,19 @@ export class GtmService {
   }
 
   public ecommerceItemsEvent(event: GaEvent, items: GaEcommerceItem[]): void {
-    pushOnDataLayer({ ecommerce: null });
+    // pushOnDataLayer({ ecommerce: null });
     const layer = new GtmEcommerceLayer(event, new GtmEcommerceData(items));
-    pushOnDataLayer(layer);
+    pushOnDataLayer('event', event, new GtmEcommerceData(items));
   }
 
   public customEvent(action: GaEvent | string, category: GtmCustomEventCategory | string, eventName: string, eventContent?: any): void {
     try {
-      pushOnDataLayer({
-        'event': action,
-        'event_name': eventName,
-        'event_category': category,
-        'event_content': eventContent,
-      });
+      // pushOnDataLayer({
+      //   'event': action,
+      //   'event_name': eventName,
+      //   'event_category': category,
+      //   'event_content': eventContent,
+      // });
 
     } catch (error) {
       console.error(error);
