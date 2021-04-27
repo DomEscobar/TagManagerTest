@@ -6,8 +6,7 @@ export function addGTMScripts(gtmId: string | undefined): Promise<void> {
 
         const doc = browserGlobals.documentRef();
         pushOnDataLayer({
-            'gtm.start': new Date().getTime(),
-            'event': 'gtm.js'
+            'gtm.start': new Date().getTime()
         });
 
         const gtmScript: HTMLScriptElement = doc.createElement('script');
