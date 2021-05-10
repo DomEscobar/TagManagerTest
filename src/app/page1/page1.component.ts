@@ -1,4 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
+import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { GaEcommerceItem } from "../google-analysis-4/ga-ecommerce-item";
 import { GaEvent } from "../google-analysis-4/ga-events.enum";
@@ -12,8 +13,11 @@ declare const gtag: any;
 export class Page1Component implements AfterViewInit {
 
   constructor(
+    private readonly _title: Title,
     private readonly _router: Router,
-    private readonly _gtmService: GtmService) { }
+    private readonly _gtmService: GtmService) { 
+      this._title.setTitle("Seite eins");
+    }
 
   ngAfterViewInit(): void {
 

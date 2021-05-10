@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from "@angular/platform-browser";
 import { GaEvent } from "../google-analysis-4/ga-events.enum";
 import { GtmService } from "../google-analysis-4/gtm.service";
 
@@ -11,7 +12,11 @@ export class Page2Component implements OnInit {
 
   public checkoutDone: boolean;
 
-  constructor(private readonly _gtmService: GtmService) { }
+  constructor(
+    private _title: Title,
+    private readonly _gtmService: GtmService) {
+    this._title.setTitle("Seite zwei");
+  }
 
   ngOnInit(): void {
   }
