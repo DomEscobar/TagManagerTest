@@ -7,6 +7,8 @@ import { Page1Component } from './page1/page1.component';
 import { Page2Component } from './page2/page2.component';
 import { CookieBannerComponent } from './cookie-banner/cookie-banner.component';
 import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,13 @@ import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [Title],
   bootstrap: [AppComponent]
