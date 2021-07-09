@@ -7,6 +7,7 @@ import { Page1Component } from './page1/page1.component';
 import { Page2Component } from './page2/page2.component';
 import { CookieBannerComponent } from './cookie-banner/cookie-banner.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     CookieBannerComponent
   ],
   imports: [
+    SwiperModule,
     BrowserModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {

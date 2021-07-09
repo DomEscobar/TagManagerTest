@@ -1,5 +1,16 @@
 <div class="container">
   <br>
+
+  <swiper>
+    <ng-template swiperSlide>
+      <div>Slide</div>
+    </ng-template>
+  
+    <ng-template swiperSlide *ngFor="let slide of [1,2,3]">
+      <div>Slide</div>
+    </ng-template>
+  </swiper>
+
   <div class="card-deck">
     <a class="card" (click)="selectGTM()">
       <img
@@ -36,3 +47,5 @@
     </a>
   </div>
 </div>
+
+
