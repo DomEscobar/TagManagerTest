@@ -26,8 +26,7 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/swiper/swiper-bundle.min.css"
+              "src/styles.css"
             ],
             "scripts": [],
             "serviceWorker": true,
