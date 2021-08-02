@@ -1,5 +1,27 @@
 <div class="container">
   <br>
+  <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" [navigation]="'arrows'" outsideDays="hidden">
+    
+    <ng-template ngbDatepickerContent>
+      <div class="row">
+        <div class="col-sm-12 col-md-6" *ngFor="let month of dp.state.months">
+          <div class="p-1 font-weight-bold text-center h4 d-block d-md-none d-lg-none d-xl-none">{{ i18n.getMonthFullName(month.month) }} {{ month.year }}</div>
+          <ngb-datepicker-month class="" [month]="month"></ngb-datepicker-month>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-datepicker>
+
+  <ng-template #t let-date let-focused="focused">
+    <span class="custom-day"
+          [class.focused]="focused"
+          [class.range]="isRange(date)"
+          [class.faded]="isHovered(date) || isInside(date)"
+          (mouseenter)="hoveredDate = date"
+          (mouseleave)="hoveredDate = null">
+      {{ date.day }}
+    </span>
+  </ng-template>
 
   <div class="card-deck">
     <a class="card" (click)="selectGTM()">
